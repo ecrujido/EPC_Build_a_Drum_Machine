@@ -125,8 +125,6 @@ const soundsGroup = {
   smoothPianoKit: secondSoundsGroup };
 
 
-
-
 const KeyboardKey = ({ play, sound: { id, key, url, keyCode } }) => {
   React.useEffect(() => {
     document.addEventListener('keydown', handleKeyDown);}, []);
@@ -137,17 +135,17 @@ const KeyboardKey = ({ play, sound: { id, key, url, keyCode } }) => {
       play(key, id);}
   };
 
-  return /*#__PURE__*/(
-    React.createElement("button", { id: keyCode, className: "drum-pad", onClick: () => play(key, id) }, /*#__PURE__*/
+  return (
+    React.createElement("button", { id: keyCode, className: "drum-pad", onClick: () => play(key, id) },
     React.createElement("audio", { className: "clip", id: key, src: url }),
     key));
 
 };
 
-const Keyboard = ({ power, play, sounds }) => /*#__PURE__*/
+const Keyboard = ({ power, play, sounds }) =>
 
 React.createElement("div", { className: "keyboard" },
-power ? sounds.map(sound => /*#__PURE__*/React.createElement(KeyboardKey, { play: play, sound: sound })) : sounds.map(sound => /*#__PURE__*/React.createElement(KeyboardKey, { play: play, sound: { ...sound, url: '#' } })));
+power ? sounds.map(sound => React.createElement(KeyboardKey, { play: play, sound: sound })) : sounds.map(sound => React.createElement(KeyboardKey, { play: play, sound: { ...sound, url: '#' } })));
 
 
 
@@ -242,7 +240,6 @@ const App = () => {
     React.createElement("h6", { className: "dr" }, "Drum Machine")), /*#__PURE__*/
 
     React.createElement("hr", null))));
-
 
 };
 
