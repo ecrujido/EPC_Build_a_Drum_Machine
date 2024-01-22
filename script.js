@@ -224,23 +224,22 @@ const App = () => {
   };
 
 
-  return /*#__PURE__*/(
+  return(
     React.createElement("div", { id: "drum-machine" },
-    setKeyVolume(), /*#__PURE__*/
-    React.createElement("div", { className: "wrapper" }, /*#__PURE__*/
-    React.createElement(Keyboard, { power: power, play: play, sounds: sounds }), /*#__PURE__*/
+    setKeyVolume(),
+    React.createElement("div", { className: "wrapper" },
+    React.createElement(Keyboard, { power: power, play: play, sounds: sounds }), 
     React.createElement(DrumControl, {
       stop: stop,
       power: power,
       volume: volume, handleVolume: handleVolume,
-      name: soundName || soundsName[soundsType], changeSoundsGroup: changeSoundsGroup }), /*#__PURE__*/
+      name: soundName || soundsName[soundsType], changeSoundsGroup: changeSoundsGroup }),
 
-    React.createElement("div", { id: "mod" }, /*#__PURE__*/
-    React.createElement("h1", { className: "rol" }, "Roland Tr-10"), /*#__PURE__*/
-    React.createElement("h6", { className: "dr" }, "Drum Machine")), /*#__PURE__*/
-
+    React.createElement("div", { id: "mod" },
+    React.createElement("h1", { className: "rol" }, "Roland Tr-10"), 
+    React.createElement("h6", { className: "dr" }, "Drum Machine")), 
     React.createElement("hr", null))));
 
 };
 
-ReactDOM.render( /*#__PURE__*/React.createElement(App, null), document.querySelector('#app'));
+ReactDOM.render(React.createElement(App, null), document.querySelector('#app'));
