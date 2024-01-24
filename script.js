@@ -125,7 +125,7 @@ const soundsGroup = {
   smoothPianoKit: soundsGroupTwo };
 
 
-const KeyboardKey = ({ play, sound: { id, key, url, keyCode } }) => {
+const keyboardKey = ({ play, sound: { id, key, url, keyCode } }) => {
   React.useEffect(() => {
     document.addEventListener('keydown', handleKeyDown);}, []);
 
@@ -153,11 +153,11 @@ const Keyboard = ({ power, play, sounds }) =>
   React.createElement("div", { 
     className: "keyboard" 
   },
-  power ? sounds.map(sound => React.createElement(KeyboardKey, { 
+  power ? sounds.map(sound => React.createElement(keyboardKey, { 
     play: play, 
     sound: sound
   })
-  ) : sounds.map(sound => React.createElement(KeyboardKey, 
+  ) : sounds.map(sound => React.createElement(keyboardKey, 
     { play: play,
       sound: { ...sound, url: '#' } 
     })
@@ -166,7 +166,7 @@ const Keyboard = ({ power, play, sounds }) =>
 
 
 
-const DrumControl = ({ stop, power, name, handleVolume, volume, changeSoundsGroup }) => {
+const drumControl = ({ stop, power, name, handleVolume, volume, changeSoundsGroup }) => {
   return (
     React.createElement("div", { className: "control" },
 
@@ -178,9 +178,12 @@ const DrumControl = ({ stop, power, name, handleVolume, volume, changeSoundsGrou
     
     React.createElement("button", { onClick: changeSoundsGroup }, "Change Sounds "),
     
+    React.createElement("br", null),
+
     React.createElement("input", { className: "inp", max: "1", min: "0", step: "0.01",
       type: "range", value: volume, onChange: handleVolume })));
 };
+
 
 const App = () => {
   const [power, setPower] = React.useState(true);
@@ -197,15 +200,18 @@ const App = () => {
     setVolume(event.target.value);
   };
 
+  const colorBlack = '#000000';
+  const colorWhite = 'rgba(230, 230, 230)';
+
   const styleActiveKey = audio => {
-    audio.parentElement.style.backgroundColor = '#000000';
-    audio.parentElement.style.color = '#ffffff';
+    audio.parentElement.style.backgroundColor = colorBlack;
+    audio.parentElement.style.color = colorWhite;
   };
 
   const deactivate = audio => {
     setTimeout(() => {
-      audio.parentElement.style.backgroundColor = '#ffffff';
-      audio.parentElement.style.color = '#000000';
+      audio.parentElement.style.backgroundColor = colorWhite;
+      audio.parentElement.style.color = colorBlack;
     }, 300);
   };
 
@@ -240,6 +246,11 @@ const App = () => {
     });
   };
 
+  const newLine = () => {
+    return createElement("div", {className: "divider"});
+  };
+
+
 
   return(
     React.createElement("div", { id: "drum-machine" },
@@ -250,11 +261,12 @@ const App = () => {
       play: play,
       sounds: sounds }
     ),
-    React.createElement(DrumControl, {
+    React.createElement(drumControl, {
       stop: stop,
       power: power,
       volume: volume,
       handleVolume: handleVolume,
+      newLine: newLine,
       name: soundName || soundsName[soundsType], changeSoundsGroup: changeSoundsGroup
     }),
 
@@ -262,7 +274,7 @@ const App = () => {
 
     React.createElement("img", { src: 'https://drive.google.com/thumbnail?id=1O3anVg9V2UzncT04_J-sX1ok6I1uAzTb', className: "image", alt: 'piano-keyboard' }),
 
-    React.createElement("h6", { className: "drum-machine" }, "Drum Machine by EPC " + String.fromCharCode(169) +  " 2024"))))); 
+    React.createElement("h5", { className: "dr" }, "Drum Machine " + String.fromCharCode(169) +  " 2024"))))); 
 };
 
 ReactDOM.render(React.createElement(App, null), document.querySelector('#app'));

@@ -2,40 +2,47 @@
   margin: 0 ; 
 }
 
-body { 
-font-size: 24px ; }
+:root {
+  --black-color: black;
+  --light-green-color: rgba(71, 144, 71, 0.5);
+  --green-color: green;
+  --white-color: white;
+  --offwhite-color: rgba(240, 240, 240);
+ }
 
 h2 {
-  font-size: 20px ; 
+  font-size: 20px;
+
 }
 
 #drum-machine { 
-margin: 15px ; 
-height: 100vh ; 
-display: flex ; 
-align-items: center ; 
-flex-direction: column ; 
-justify-content: center ;
+margin: 15px; 
+height: 100vh; 
+display: flex; 
+align-items: center; 
+flex-direction: column; 
+justify-content: center;
 }
 
 .wrapper { 
-width: 100% ; 
-display: grid ;
-padding: 10px ; 
-grid-gap: 15px ; 
-margin-top: 40px ; 
-border-radius: 15px ; 
-grid-template-columns: 1fr ; 
-background-color: black ; 
-border: 3px solid green }
+  width: 100% ; 
+  display: grid ;
+  padding: 10px ; 
+  grid-gap: 15px ; 
+  margin-top: 40px ; 
+  border-radius: 15px ; 
+  grid-template-columns: 1fr ; 
+  background-color: var(--black-color); 
+  border: 3px solid var(--green-color); 
+}
 
 .keyboard {
- 
-  display: grid ; 
-  grid-gap: 10px ; 
+  display: grid; 
+  grid-gap: 10px; 
   grid-template-columns: 
-    repeat(3,1fr) ; 
+  repeat(3,1fr); 
 }
+
 .keyboard .drum-pad { 
 width: 100% ; 
 height: 90% ; 
@@ -43,58 +50,69 @@ outline: none ;
 font-size: 24px ; 
 cursor: pointer ; 
 border-radius: 10px ; 
-background-color: #ffffff ; 
+background-color: var(--offwhite-color); 
 transition: all .3s ease-in-out ;
-box-shadow: 2px 0px 8px 0px rgba(20,255,20,0.75);
--webkit-box-shadow: 2px 0px 8px 0px rgba(20,255,20,0.75);
--moz-box-shadow: 2px 0px 8px 0px rgba(20,255,20,0.75); 
+box-shadow: 2px 0px 8px 0px var(--green-color);
+-webkit-box-shadow: 2px 0px 8px 0px var(--green-color);
+-moz-box-shadow: 2px 0px 8px 0px var(--green-color); 
   
 }
 
-@media(min-width: 768px) { 
-  .wrapper { 
-  width: 680px }}
-
-@media(min-width: 992px) { 
-  .wrapper {
-    grid-template-columns: 1fr 1fr ; 
-  }}
-
-control {
-  display: flex ; 
-  align-items: center ; 
-  flex-direction: column ; 
-  justify-content: center ; 
+.control {
+  display: grid; 
+  align-items: start; 
+  flex-direction: column; 
+  justify-content: flex-start;
+  min-width: fit-content;
 }
 
 .control > button, 
 .control > input, 
 .control > h2 { 
-margin-bottom: 10px
+margin-bottom: 13px;
 }
 
 .control button { 
-border: 3px solid green ; 
-color: #ffffff ; 
-cursor: pointer ; 
-font-size: 20px ; 
-padding: 8px 10px ;
-border-radius: 5px ; 
-background-color: #000000 ;
+border: 3px solid var(--green-color); 
+color: var(--offwhite-color); 
+cursor: pointer; 
+font-size: 20px; 
+padding: 8px 10px;
+border-radius: 5px; 
+background-color: var(--black-color);
+}
+
+@media(min-width: 768px) and (hover: hover) { 
+  .wrapper {
+    width: 500px;
+  }
+  button:hover {
+    color: var(--green-color);
+  }
   
 }
 
+@media(min-width: 562px) { 
+  .wrapper {
+    grid-template-columns: 1fr 1fr; 
+  }
+}
+
+
+
+
 #mod {
-widht: 100% ;
+width: 100% ;
 }
 
 .rol, .dr {
-  color: green ; 
+  color: var(--green-color); 
 }
 
 #display { 
-  color: green
+  color: var(--green-color);
 }
 
 .vol { 
-color: green }
+color: var(--green-color);
+}
