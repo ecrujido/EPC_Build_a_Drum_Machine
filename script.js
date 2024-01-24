@@ -1,7 +1,7 @@
 import React from 'https://esm.sh/react@18.2.0';
 import ReactDOM from 'https://esm.sh/react-dom@18.2.0';
 
-const firstSoundsGroup = [
+const soundsGroupOne = [
 {
   keyCode: 81,
   key: 'Q',
@@ -58,7 +58,7 @@ const firstSoundsGroup = [
 
 
 
-const secondSoundsGroup = [
+const soundsGroupTwo = [
 {
   keyCode: 81,
   key: 'Q',
@@ -121,31 +121,48 @@ const soundsName = {
 
 
 const soundsGroup = {
-  heaterKit: firstSoundsGroup,
-  smoothPianoKit: secondSoundsGroup };
+  heaterKit: soundsGroupOne,
+  smoothPianoKit: soundsGroupTwo };
 
 
 const KeyboardKey = ({ play, sound: { id, key, url, keyCode } }) => {
   React.useEffect(() => {
     document.addEventListener('keydown', handleKeyDown);}, []);
 
-
   const handleKeyDown = event => {
     if (event.keyCode === keyCode) {
-      play(key, id);}
+      play(key, id);
+    }
   };
 
   return (
-    React.createElement("button", { id: keyCode, className: "drum-pad", onClick: () => play(key, id) },
-    React.createElement("audio", { className: "clip", id: key, src: url }),
-    key));
-
+    React.createElement("button", { 
+      id: keyCode, 
+      className: "drum-pad", 
+      onClick: () => play(key, id)
+    },
+    React.createElement("audio", {
+      className: "clip",
+      id: key,
+      src: url 
+    }), key)
+  );
 };
 
 const Keyboard = ({ power, play, sounds }) =>
-
-React.createElement("div", { className: "keyboard" },
-power ? sounds.map(sound => React.createElement(KeyboardKey, { play: play, sound: sound })) : sounds.map(sound => React.createElement(KeyboardKey, { play: play, sound: { ...sound, url: '#' } })));
+  React.createElement("div", { 
+    className: "keyboard" 
+  },
+  power ? sounds.map(sound => React.createElement(KeyboardKey, { 
+    play: play, 
+    sound: sound
+  })
+  ) : sounds.map(sound => React.createElement(KeyboardKey, 
+    { play: play,
+      sound: { ...sound, url: '#' } 
+    })
+  )
+);
 
 
 
@@ -228,18 +245,24 @@ const App = () => {
     React.createElement("div", { id: "drum-machine" },
     setKeyVolume(),
     React.createElement("div", { className: "wrapper" },
-    React.createElement(Keyboard, { power: power, play: play, sounds: sounds }), 
+    React.createElement(Keyboard, { 
+      power: power,
+      play: play,
+      sounds: sounds }
+    ),
     React.createElement(DrumControl, {
       stop: stop,
       power: power,
-      volume: volume, handleVolume: handleVolume,
-      name: soundName || soundsName[soundsType], changeSoundsGroup: changeSoundsGroup }),
+      volume: volume,
+      handleVolume: handleVolume,
+      name: soundName || soundsName[soundsType], changeSoundsGroup: changeSoundsGroup
+    }),
 
     React.createElement("div", { id: "mod" },
-    React.createElement("h1", { className: "rol" }, "Roland Tr-10"), 
-    React.createElement("h6", { className: "dr" }, "Drum Machine")), 
-    React.createElement("hr", null))));
 
+    React.createElement("img", { src: 'https://drive.google.com/thumbnail?id=1O3anVg9V2UzncT04_J-sX1ok6I1uAzTb', className: "image", alt: 'piano-keyboard' }),
+
+    React.createElement("h6", { className: "drum-machine" }, "Drum Machine by EPC " + String.fromCharCode(169) +  " 2024"))))); 
 };
 
 ReactDOM.render(React.createElement(App, null), document.querySelector('#app'));
